@@ -38,3 +38,10 @@ test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 }
+
+tasks.register('testWithoutDefects', Test) {
+    useJUnitPlatform() {
+        excludeTags 'defect'
+    }
+    systemProperties(System.getProperties())
+}

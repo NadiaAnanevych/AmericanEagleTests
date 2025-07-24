@@ -5,26 +5,20 @@ import configs.TestPropertiesConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CreateAccountPage;
-import pages.HomePage;
 import utils.AccountTestDataGeneration;
 import utils.TestUser;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.Duration;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pages.BasePage.*;
 
+@Tag("UI Tests")
 public class CreateAccountTests extends BaseTest{
     CreateAccountPage createAccountPage;
     TestUser user = AccountTestDataGeneration.generateTestUser();
@@ -45,6 +39,8 @@ public class CreateAccountTests extends BaseTest{
     void checkCreateAccountPageUrlAndTitleTest() {
         createAccountPage.clickAccountIcon();
         createAccountPage.clickCreateAccountButton();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.urlToBe(CREATE_ACCOUNT_URL));
 
         assertAll(
                 () -> assertEquals(CREATE_ACCOUNT_URL, createAccountPage.getCurrentUrl()),
@@ -54,7 +50,7 @@ public class CreateAccountTests extends BaseTest{
     }
 
     @DisplayName("create an account filling in all necessary fields")
-    @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
+    @Tags({@Tag("P0"), @Tag("smoke"), @Tag("defect"), @Tag("positive")}) //automated traffic blocks by anti-bot protection (e.g., Akamai)
     @Test void successfulAccountCreationTest() {
         String monthOfBirth = "January";
         String dayOfBirth = "10";
@@ -68,7 +64,7 @@ public class CreateAccountTests extends BaseTest{
         softly.assertThat(createAccountPage.isTermsCheckboxSelected())
                 .isTrue();
 
-        createAccountPage.waitForSuccessfulUrlAndMessage(); //temporary doesn't work - new "Account created!" doesn't open
+        createAccountPage.waitForSuccessfulUrlAndMessage();
 
         assertAll(
                 () -> assertEquals(SUCCESSFUL_CREATED_ACCOUNT_URL, createAccountPage.getCurrentUrl()),
@@ -77,7 +73,7 @@ public class CreateAccountTests extends BaseTest{
     }
 
     @DisplayName("trying to create an account with invalid email")
-    @Tags({@Tag("P0"), @Tag("negative")})
+    @Tags({@Tag("P1"), @Tag("negative")})
     @Test void createAccountWithInvalidEmailTest() {
         String monthOfBirth = "January";
         String dayOfBirth = "10";
@@ -98,7 +94,7 @@ public class CreateAccountTests extends BaseTest{
     }
 
     @DisplayName("trying to create an account with invalid password")
-    @Tags({@Tag("P0"), @Tag("negative")})
+    @Tags({@Tag("P1"), @Tag("negative")})
     @Test
     void createAccountWithInvalidPassword() {
         String monthOfBirth = "January";
@@ -120,7 +116,7 @@ public class CreateAccountTests extends BaseTest{
         softly.assertAll();
     }
     @DisplayName("trying to create an account without birth date")
-    @Tags({@Tag("P0"), @Tag("negative")})
+    @Tags({@Tag("P1"), @Tag("negative")})
     @Test
     void createAccountWithoutBirthDate() {
         String email = user.getEmail();
@@ -135,6 +131,8 @@ public class CreateAccountTests extends BaseTest{
 
     }
 
+    @DisplayName("sign in")
+    @Tags({@Tag("P0"), @Tag("defect"), @Tag("positive")}) //automated traffic blocks by anti-bot protection (e.g., Akamai)
     @Test
     void signInPageTest() {
         createAccountPage.clickAccountIcon();
@@ -144,7 +142,7 @@ public class CreateAccountTests extends BaseTest{
         createAccountPage.submitSignInButtonClick();
 
         assertThat("test's Account")
-               .isEqualTo(createAccountPage.getSuccessfulEnteredAccountText());
+               .isEqualTo(createAccountPage.getSuccessfulEnteredAccountText()); //TEMPORARY DOESN'T WORK
     }
 
 }

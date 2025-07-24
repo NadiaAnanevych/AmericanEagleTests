@@ -32,7 +32,7 @@ public class BagApiTests {
     }
 
     @DisplayName("Checking getting item from the bag")
-    @Tags({@Tag("PO"),@Tag("smoke"), @Tag("positive")})
+    @Tags({@Tag("PO"),@Tag("smoke"), @Tag("defect"), @Tag("positive")})
     @Test
     void getItemTest() {
         BagResponse response = bag.getBag();
@@ -69,8 +69,9 @@ public class BagApiTests {
         softly.assertAll();
     }
 
+
     @DisplayName("Checking updating the item in the bag")
-    @Tags({@Tag("P0"),@Tag("smoke"), @Tag("positive")})
+    @Tags({@Tag("P0"),@Tag("smoke"), @Tag("defect"), @Tag("positive")})
     @Test
     void updateItemTest(){
         int newQty = 2;

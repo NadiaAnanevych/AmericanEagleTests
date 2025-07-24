@@ -1,8 +1,7 @@
 package pages;
 
-import com.github.javafaker.Bool;
+
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.extension.PreInterruptCallback;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -56,10 +55,6 @@ public class HomePage extends BasePage{
 
     }
 
-    @Step("get logo")
-    public String getLogo() {
-        return logo.getText();
-    }
 
     @Step("check logo is displayed")
     public Boolean logoIsDisplayed() {
@@ -81,17 +76,16 @@ public class HomePage extends BasePage{
         return searchModal.isDisplayed();
     }
 
-    @Step("input text in 'search' field")
-    public void sendTextInSearchField(String textToSearch) {
-        searchInputField.sendKeys(textToSearch);
-    }
-
     @Step("wait until 'Search' field becomes clickable")
     public void waitForSearchField(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.elementToBeClickable(searchInputField));
     }
 
+    @Step("input text in 'search' field")
+    public void sendTextInSearchField(String textToSearch) {
+        searchInputField.sendKeys(textToSearch);
+    }
 
     @Step("click 'submit' button from 'search' line")
     public void clickSubmitButton() {
@@ -171,11 +165,6 @@ public class HomePage extends BasePage{
     @Step("select 'jeans' in Women category")
     public void selectJeansInWomenCategory() {
         womenJeansLocator.click();
-        /*By jeansLinkLocator = By.xpath
-                ("//div[h6[text()='Categories']]//a[@href='/us/en/c/ae/men/bottoms/jeans/cat6430041?pagetype=plp']");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement jeansLink = wait.until(ExpectedConditions.presenceOfElementLocated(jeansLinkLocator));
-        jeansLink.click();*/
     }
 
     @Step("get text for Women jeans title")

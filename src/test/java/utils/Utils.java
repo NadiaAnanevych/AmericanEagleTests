@@ -8,7 +8,7 @@ public class Utils {
 
         return query.trim()
                 .toLowerCase()
-                .replaceAll("\\s+", "-")
-                .replaceAll("[^a-z0-9\\-]", "");
+                .replaceAll("[^a-z0-9\\s]", "") // usuń znaki specjalne, zostaw spacje
+                .replaceAll("\\s+", "+");       // zamień spacje na +
     }
 }

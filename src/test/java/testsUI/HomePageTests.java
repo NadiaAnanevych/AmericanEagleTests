@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static pages.BasePage.BASE_URL_UI;
 import static pages.BasePage.WOMEN_JEANS_URL;
 
+
+@Tag("UI Tests")
 public class HomePageTests extends BaseTest{
     HomePage homePage;
 
@@ -18,7 +20,6 @@ public class HomePageTests extends BaseTest{
         homePage = new HomePage(driver);
         homePage.openHomePage();
     }
-
 
     @Test
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
@@ -57,8 +58,9 @@ public class HomePageTests extends BaseTest{
         homePage.sendTextInSearchField(textToSearch);
         homePage.clickSubmitButton();
         assertThat(homePage.getSubtitleAfterSearchText()).contains(textToSearch);
-        assertEquals("https://www.ae.com/us/en/s/jeans", expectedUrl);
+        assertEquals(expectedUrl, homePage.getCurrentUrl());
     }
+
     @Test
     @Tags({@Tag("P1"), @Tag("negative")})
     @DisplayName("Check message when search non existing item")
@@ -81,26 +83,18 @@ public class HomePageTests extends BaseTest{
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
     @DisplayName("Logo is displayed")
     void checkAccountIconIsDisplayed() {
+
         assertTrue(homePage.accountIconIsDisplayed());
     }
 
     @Test
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
-    @DisplayName("Sigh in button is visible after clicking on Account icon")
-    void checkSignInButtonIsDisplayedOnAccountModal(){
+    @DisplayName("'Sigh in' and 'Create account' button are visible after clicking on Account icon")
+    void checkSignInAndCreateAccountButtonAreDisplayedOnAccountModal(){
         homePage.clickAccountIcon();
         assertAll(
                 () -> assertTrue(homePage.signInButtonIsDisplayed()),
-                () -> assertEquals("Account", homePage.getAccountTitleText())
-        );
-    }
-
-    @Test
-    @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
-    @DisplayName("Create account button is visible after clicking on Account icon")
-    void checkCreateAccountButtonIsDisplayedOnAccountModal(){
-        homePage.clickAccountIcon();
-        assertAll(
+                () -> assertEquals("Account", homePage.getAccountTitleText()),
                 () -> assertTrue(homePage.createAccountButtonIsDisplayed()),
                 () -> assertEquals("Account", homePage.getAccountTitleText())
         );
