@@ -1,10 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,6 +13,7 @@ import java.util.List;
 public class BagPage extends BasePage{
 
     public BagPage(WebDriver driver) {
+
         super(driver);
     }
     @FindBy(xpath = "//button[@data-test-btn='search-cta']")
@@ -66,7 +64,7 @@ public class BagPage extends BasePage{
     private WebElement emptyBagMessage;
     @FindBy(xpath = "//span[text()='Checkout']")
     private WebElement checkoutTitle;
-    @FindBy(xpath = "//a[text()='Women']")
+    @FindBy(xpath = "//li[@data-test='top-link-wrapper']//a[contains(text(),'Women')]")
     private WebElement womenCategory;
     @FindBy(xpath = "//div[h6[text()='Categories']]//a[@href='/us/en/c/women/bottoms/jeans/cat6430042?pagetype=plp']")
     private WebElement womenJeansLocator;
@@ -141,12 +139,12 @@ public class BagPage extends BasePage{
 
     @Step("select first available size")
     public void selectFirstAvailableSize(){
+        closeAdvertsIfExists();
         actions
                 .scrollToElement(sizeContainer)
                 .pause(Duration.ofSeconds(7))
                 .perform();
-        wait.until(ExpectedConditions.elementToBeClickable(sizeDropdown));
-        sizeDropdown.click();
+        safeClick(sizeDropdown);
         wait.until(ExpectedConditions.visibilityOfAllElements(availableSizes));
         if (!availableSizes.isEmpty()) {
             availableSizes.get(0).click();
@@ -254,7 +252,8 @@ public class BagPage extends BasePage{
 
     @Step("move to 'women' category")
     public void moveToWomenCategory() {
-        actions.moveToElement(womenCategory).pause(Duration.ofSeconds(2)).perform();
+        closeAdvertsIfExists();
+        actions.moveToElement(womenCategory).pause(Duration.ofSeconds(4)).perform();
     }
 
     @Step("select 'jeans' in Women category")
@@ -270,12 +269,9 @@ public class BagPage extends BasePage{
 
     @Step("select first available item from catalog results")
     public void selectFirstItemFromCatalogAndClickOnIt(){
-        actions
-                .scrollToElement(firstItemFromCatalog)
-                .pause(Duration.ofSeconds(4))
-                .perform();
-        wait.until(ExpectedConditions.elementToBeClickable(firstItemFromCatalog));
-        firstItemFromCatalog.click();
+        closeAdvertsIfExists();
+        actions.scrollToElement(firstItemFromCatalog).perform();
+        safeClick(firstItemFromCatalog);
     }
 
     @Step("get item price")

@@ -2,8 +2,7 @@ package pages;
 
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,10 +22,6 @@ public class BasePage {
 
     @FindBy(xpath = "//a[@data-testid='ae-logo']")
     private WebElement title;
-    @FindBy(css = "button[data-test-btn='close']")
-    private WebElement closeButton;
-    @FindBy(css = "div[data-id='modalFlyoutOnboarding'][data-modal-show='true']")
-    private WebElement modalLocator;
 
 
 
@@ -52,19 +47,47 @@ public class BasePage {
         return title.getText();
     }
 
+
     @Step ("close adverts window")
     public void closeAdvertsIfExists(){
         try {
-            wait.until(ExpectedConditions.visibilityOf(modalLocator));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-            if (modalLocator.isDisplayed()) {
-                wait.until(ExpectedConditions.elementToBeClickable(closeButton));
-                closeButton.click();
-                System.out.println("Modal was closed..");
-            }
+            WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.cssSelector("div.bloomreach-weblayer")));
+
+            wait.until(ExpectedConditions.visibilityOf(shadowHost));
+
+            SearchContext shadowRoot = shadowHost.getShadowRoot();
+            WebElement promoBox = shadowRoot.findElement(By.cssSelector(".weblayer--box-promotion-1"));
+
+            WebElement closeButton = promoBox.findElement(By.cssSelector("button.close"));
+            wait.until(ExpectedConditions.elementToBeClickable(closeButton));
+            closeButton.click();
+            wait.until(ExpectedConditions.invisibilityOf(shadowHost));
+            System.out.println("Modal was found and closed.");
+        } catch (TimeoutException e) {
+            System.out.println("Modal layer not present or already closed.");
         } catch (Exception e) {
-            System.out.println("Unexpected error while trying to close modal: " + e.getMessage());
+            System.err.println("Unexpected error while trying to close modal: " + e.getMessage());
         }
+    }
+
+    public void safeClick(WebElement element) {
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(element));
+                element.click();
+                return;
+            } catch (ElementClickInterceptedException e) {
+                System.out.println("Click intercepted, retrying after modal close...");
+                closeAdvertsIfExists();
+            } catch (Exception e) {
+                System.err.println("Click failed: " + e.getMessage());
+                throw e;
+            }
+        }
+        throw new RuntimeException("Unable to click after multiple attempts due to modal interference.");
     }
 
 }

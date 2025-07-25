@@ -42,7 +42,7 @@ public class HomePage extends BasePage{
     private  WebElement bagIcon;
     @FindBy(xpath = "//h1[text()='Shopping Bag']")
     private WebElement bagText;
-    @FindBy(xpath = "//a[text()='Women']")
+    @FindBy(xpath = "//li[@data-test='top-link-wrapper']//a[contains(text(),'Women')]")
     private WebElement womenCategory;
     @FindBy(xpath = "//div[h6[text()='Categories']]//a[@href='/us/en/c/women/bottoms/jeans/cat6430042?pagetype=plp']")
     private WebElement womenJeansLocator;
