@@ -2,9 +2,9 @@ package pages;
 
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -158,9 +158,18 @@ public class HomePage extends BasePage{
 
     @Step("move to 'women' category")
     public void moveToWomenCategory() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", womenCategory);
+        ((JavascriptExecutor) driver).executeScript(
+                "var evObj = document.createEvent('MouseEvents');" +
+                        "evObj.initEvent('mouseover', true, true);" +
+                        "arguments[0].dispatchEvent(evObj);", womenCategory);
+    }
+
+    /*@Step("move to 'women' category")
+    public void moveToWomenCategory() {
             Actions actions = new Actions(driver);
             actions.moveToElement(womenCategory).pause(Duration.ofSeconds(2)).perform();
-        }
+        }*/
 
     @Step("select 'jeans' in Women category")
     public void selectJeansInWomenCategory() {

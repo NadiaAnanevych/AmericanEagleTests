@@ -252,9 +252,18 @@ public class BagPage extends BasePage{
 
     @Step("move to 'women' category")
     public void moveToWomenCategory() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", womenCategory);
+        ((JavascriptExecutor) driver).executeScript(
+                "var evObj = document.createEvent('MouseEvents');" +
+                        "evObj.initEvent('mouseover', true, true);" +
+                        "arguments[0].dispatchEvent(evObj);", womenCategory);
+    }
+
+    /*@Step("move to 'women' category")
+    public void moveToWomenCategory() {
         closeAdvertsIfExists();
         actions.moveToElement(womenCategory).pause(Duration.ofSeconds(4)).perform();
-    }
+    }*/
 
     @Step("select 'jeans' in Women category")
     public void selectJeansInWomenCategory() {
