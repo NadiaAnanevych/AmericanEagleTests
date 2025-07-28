@@ -45,7 +45,7 @@ jobs:
     - name: Build with Gradle Wrapper
       env:
         SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
-      run: ./gradlew testWithoutDefects -Denv=default 
+      run: ./gradlew clean testWithoutDefects -Denv=default 
   
 
     - name: Copy History
