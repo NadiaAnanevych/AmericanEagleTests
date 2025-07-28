@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -158,11 +159,18 @@ public class HomePage extends BasePage{
 
     @Step("move to 'women' category")
     public void moveToWomenCategory() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", womenCategory);
-        ((JavascriptExecutor) driver).executeScript(
-                "var evObj = document.createEvent('MouseEvents');" +
-                        "evObj.initEvent('mouseover', true, true);" +
-                        "arguments[0].dispatchEvent(evObj);", womenCategory);
+        closeAdvertsIfExists();
+        Actions actions = new Actions(driver);
+        actions
+                .pause(500)
+                .scrollToElement(womenCategory)
+                .perform();
+        closeAdvertsIfExists();
+        wait.until(ExpectedConditions.visibilityOf(womenCategory));
+
+        closeAdvertsIfExists();
+        actions.moveToElement(womenCategory).perform();
+        wait.until(ExpectedConditions.visibilityOf(womenJeansLocator));
     }
 
     /*@Step("move to 'women' category")
