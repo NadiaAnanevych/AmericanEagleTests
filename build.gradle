@@ -39,9 +39,16 @@ test {
     systemProperties(System.getProperties())
 }
 
-tasks.register('testWithoutDefects', Test) {
+tasks.create('testWithoutDefects', Test) {
+    description = 'Runs tests excluding ones tagged as defect'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+
     useJUnitPlatform {
         excludeTags 'defect'
     }
+
     systemProperties(System.getProperties())
 }
