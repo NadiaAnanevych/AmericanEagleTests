@@ -49,7 +49,7 @@ public class CreateAccountTests extends BaseTest{
 ;
     }
 
-    @DisplayName("create an account filling in all necessary fields")
+    @DisplayName("Create an account filling in all necessary fields")
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("defect"), @Tag("positive")}) //automated traffic blocks by anti-bot protection (e.g., Akamai)
     @Test void successfulAccountCreationTest() {
         String monthOfBirth = "January";
@@ -72,7 +72,7 @@ public class CreateAccountTests extends BaseTest{
     );
     }
 
-    @DisplayName("trying to create an account with invalid email")
+    @DisplayName("Trying to create an account with invalid email")
     @Tags({@Tag("P1"), @Tag("negative")})
     @Test void createAccountWithInvalidEmailTest() {
         String monthOfBirth = "January";
@@ -93,7 +93,7 @@ public class CreateAccountTests extends BaseTest{
         softly.assertAll();
     }
 
-    @DisplayName("trying to create an account with invalid password")
+    @DisplayName("Trying to create an account with invalid password")
     @Tags({@Tag("P1"), @Tag("negative")})
     @Test
     void createAccountWithInvalidPassword() {
@@ -115,7 +115,7 @@ public class CreateAccountTests extends BaseTest{
                 .isEqualTo(createAccountPage.getErrorsPasswordText());
         softly.assertAll();
     }
-    @DisplayName("trying to create an account without birth date")
+    @DisplayName("Trying to create an account without birth date")
     @Tags({@Tag("P1"), @Tag("negative")})
     @Test
     void createAccountWithoutBirthDate() {
@@ -131,7 +131,7 @@ public class CreateAccountTests extends BaseTest{
 
     }
 
-    @DisplayName("sign in")
+    @DisplayName("Sign in")
     @Tags({@Tag("P0"), @Tag("defect"), @Tag("positive")}) //automated traffic blocks by anti-bot protection (e.g., Akamai)
     @Test
     void signInPageTest() {

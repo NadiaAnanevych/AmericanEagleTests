@@ -109,7 +109,7 @@ public class HomePageTests extends BaseTest{
 
     @Test
     @Tags({@Tag("P1"), @Tag("positive")})
-    @DisplayName("check 'Favorites' icon can be clicked and 'Favorites' title text is displayed")
+    @DisplayName("Check 'Favorites' icon can be clicked and 'Favorites' title text is displayed")
     void checkFavoritesIconCanBeClickedAndFavoritesTitleIsDisplayed(){
         homePage.clickFavoritesIcon();
         String actualText = homePage.getFavoritesTitleText();
@@ -125,7 +125,7 @@ public class HomePageTests extends BaseTest{
 
     @Test
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
-    @DisplayName("check 'Bag' icon can be clicked and 'Shopping bag' title text is displayed")
+    @DisplayName("Check 'Bag' icon can be clicked and 'Shopping bag' title text is displayed")
     void checkBagIconCanBeClickedAndShoppingBagTitleIsDisplayed(){
         homePage.clickBagIcon();
         String actualText = homePage.getBagTitleText();
@@ -134,7 +134,7 @@ public class HomePageTests extends BaseTest{
 
     @Test
     @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
-    @DisplayName("select subcategory items from main category")
+    @DisplayName("Select subcategory items from main category")
     void checkItemsCanBeSelectedFromMainCategory(){
         homePage.moveToWomenCategory();
         homePage.selectJeansInWomenCategory();
