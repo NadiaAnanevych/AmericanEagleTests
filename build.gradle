@@ -43,5 +43,4 @@ tasks.register('testWithoutDefects', Test) {
     useJUnitPlatform() {
         excludeTags 'defect'
     }
-    systemProperties(System.getProperties())
 }
