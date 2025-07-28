@@ -133,7 +133,7 @@ public class HomePageTests extends BaseTest{
     }
 
     @Test
-    @Tags({@Tag("P0"), @Tag("smoke"), @Tag("positive")})
+    @Tags({@Tag("P0"), @Tag("smoke"), @Tag("defect"), @Tag("positive")})
     @DisplayName("Select subcategory items from main category")
     void checkItemsCanBeSelectedFromMainCategory(){
         homePage.moveToWomenCategory();
