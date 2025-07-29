@@ -52,9 +52,9 @@ Because this project interacts with a live website, it is subject to anti-bot de
 Another common reason for test failures is frequently changing locators on the website, as well as new modal windows or advertisements appearing during test execution.
 
 
-Open the Gradle tool window in IntelliJ
+1.Open the Gradle tool window in IntelliJ
 
-Run one of the following commands:
+2.Run one of the following commands:
 
 💥 Execute all tests:
 
@@ -71,34 +71,37 @@ Run one of the following commands:
 ---
 
 
-🔹 Running Tests with GitHub Actions
-To execute 💥 automated tests using GitHub Actions:
+## Running Tests with GitHub Actions
 
-1.Navigate to the 'Actions' tab in the repository.
+To execute automated tests using GitHub Actions:
+
+1. Navigate to the 'Actions' tab in the repository.
 <p align="center"> <img src="images/screenshots/actions_tab.png" alt="GitHub Actions tab" width="700"/> </p>
 
-2.Locate and click on the workflow titled 'UI and API tests for American Eagle'.
+2. Locate and click on the workflow titled 'UI and API tests for American Eagle'.
 <p align="center"> <img src="images/screenshots/workflow.png" alt="Workflow Overview" width="700"/> </p>
 
-3.Hit the 'Run workflow' button (top right corner) and confirm execution.
+3. Hit the 'Run workflow' button (top right corner) and confirm execution.
 <p align="center"> <img src="images/screenshots/run_workflow.png" alt="Run Workflow" width="700"/> </p>
 
-4.Monitor the job status until the execution is completed. Results will appear within the workflow summary.
+4. Monitor the job status until the execution is completed. Results will appear within the workflow summary.
 
 
-📊 View Allure Report via GitHub Actions
+
+## View Allure Report via GitHub Actions
+
 Once the CI workflow has finished running, follow these steps to view the Allure test report:
 
-1.Open the 'Actions' tab in your repository.
+1. Open the 'Actions' tab in your repository.
 <p align="center"> <img src="images/screenshots/actions_tab.png" alt="GitHub Actions tab" width="700"/> </p>
 
-2.Find the latest workflow run and click on the 'pages-build-deployment' job.
+2. Find the latest workflow run and click on the 'pages-build-deployment' job.
 <p align="center"> <img src="images/screenshots/pages_build_and_deployment.png" alt="GitHub Pages access" width="700"/> </p>
 
-3.Once deployment is done, click the 'Deploy link' that appears in the logs.
+3. Once deployment is done, click the 'Deploy link' that appears in the logs.
 <p align="center"> <img src="images/screenshots/deploy_link.png" alt="Link to deployed Allure report" width="700"/> </p>
 
-4.The Allure Report will open in a new browser tab. There, you can review detailed results.
+4. The Allure Report will open in a new browser tab. There, you can review detailed results.
 
 <p align="center"> <img src="images/screenshots/allure_report_github.png" alt="Allure report overview" width="700"/> </p> 
 <p align="center"> <img src="images/screenshots/allure_report_github1.png" alt="Allure report overview 1" width="700"/> </p> 
