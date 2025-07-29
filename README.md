@@ -27,12 +27,12 @@ Covered areas:
 ## 🛠️ Technology Stack
 <p align="left"> 
 <a href="https://www.java.com" target="_blank" rel="noreferrer"><img src="images/logo/java-logo.png" alt="Java" width="48" height="48" /></a>
-<a href="https://gradle.org" target="_blank" rel="noreferrer"><img src="images/logo/gradle-1.png" alt="Gradle" width="50" height="30" /></a>
+<a href="https://gradle.org" target="_blank" rel="noreferrer"><img src="images/logo/gradle-1.png" alt="Gradle" width="50" height="50" /></a>
 <a href="https://www.selenium.dev" target="_blank" rel="noreferrer"><img src="images/logo/selenium_Logo.png" alt="Selenium" width="50" height="50" /></a>
-<a href="https://rest-assured.io/" target="_blank" rel="noreferrer"><img src="images/logo/rest-assured.png" alt="REST Assured" width="50" height="30" /></a>
+<a href="https://rest-assured.io/" target="_blank" rel="noreferrer"><img src="images/logo/rest-assured.png" alt="REST Assured" width="50" height="50" /></a>
 <a href="https://junit.org/junit5/" target="_blank" rel="noreferrer"><img src="images/logo/junit-original.png" alt="JUnit 5" width="50" height="50" /></a>
 <a href="https://github.com/features/actions" target="_blank" rel="noreferrer"><img src="images/logo/gitHub-Mark.png" alt="GitHub Actions" width="50" height="50" /></a>
-<a href="https://docs.qameta.io/allure/" target="_blank" rel="noreferrer"><img src="images/logo/allure.png" alt="Allure Report" width="50" height="50" /></a>
+<a href="https://docs.qameta.io/allure/" target="_blank"> <img src="images/logo/allure.png" alt="Allure Report" width="50" height="50"/> </a>
 </p>
 
 - Java 17 as the programming language
