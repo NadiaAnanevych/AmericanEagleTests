@@ -31,7 +31,7 @@ Covered areas:
 <a href="https://www.selenium.dev" target="_blank" rel="noreferrer"><img src="images/logo/selenium_Logo.png" alt="Selenium" width="50" height="50" /></a>
 <a href="https://rest-assured.io/" target="_blank" rel="noreferrer"><img src="images/logo/rest-assured.png" alt="REST Assured" width="50" height="50" /></a>
 <a href="https://junit.org/junit5/" target="_blank" rel="noreferrer"><img src="images/logo/junit-original.png" alt="JUnit 5" width="50" height="50" /></a>
-<a href="https://github.com/features/actions" target="_blank" rel="noreferrer"><img src="images/logo/gitHub-Mark.png" alt="GitHub Actions" width="50" height="50" /></a>
+<a href="https://github.com/features/actions" target="_blank" rel="noreferrer"><img src="images/logo/GitHub-Mark.png" alt="GitHub Actions" width="50" height="50" /></a>
 <a href="https://github.com/allure-framework/allure2?tab=readme-ov-file" target="_blank"> <img src="images/logo/allure_logo.png" alt="Allure Report" width="50" height="50"/> </a>
 </p>
 
@@ -45,7 +45,7 @@ Covered areas:
 
 
 
-## Running Tests Locally
+## 🚀 Running Tests Locally
 
 ⚠️ Important: Anti-bot measures on the tested website
 Because this project interacts with a live website, it is subject to anti-bot defenses (such as Akamai) that may block automated test requests. As a consequence, some tests may fail regularly even if they are implemented correctly. These tests are specially marked with the @Tag("defect") annotation.
@@ -71,7 +71,7 @@ Another common reason for test failures is frequently changing locators on the w
 ---
 
 
-## Running Tests with GitHub Actions
+## ⚙️ Running Tests with GitHub Actions
 
 To execute automated tests using GitHub Actions:
 
@@ -88,7 +88,7 @@ To execute automated tests using GitHub Actions:
 
 
 
-## View Allure Report via GitHub Actions
+## 📊 View Allure Report via GitHub Actions
 
 Once the CI workflow has finished running, follow these steps to view the Allure test report:
 
